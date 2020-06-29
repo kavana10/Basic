@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function validateForm() {
+ 
+  var num=document.forms["myForm"]["phone"].value
+  if ( document.forms["myForm"]["fname"].value== "") {
+    alert("Name must be filled out");
+    return false;
+  }
+  else if( num.length < 10) {
+    alert("Enter valid number");
+    return false;
+  }
+  var checked=false;
+
+	var elements = document.getElementsByName("sub[]");
+	for(var i=0; i < elements.length; i++){
+    	s=0
+		if(elements[i].checked) {
+			checked = true;
+            s++;
+		}
+	}
+	if (!checked) {
+		alert("select at least 1 course");
+	}
+	
+    return checked
+  
+  
+}
+ function imp() {
+            var form = new FormData(document.getElementById("form"));
+            var inputvalue = form.get("fname");
+            document.write("FName ::",inputvalue);
+            document.write("<br>");
+            var inputvalue = form.get("lname");
+            document.write("LName ::",inputvalue);
+            document.write("<br>");
+
+            var phone = form.get("phone");
+            document.write("Contact Number ::",phone, "<br>");
+            
+            var degree = form.get("b");
+            document.write("Course ::");
+            if (degree == "on")
+                document.write("Bachelor<br>");
+            else if(form.get("m") != "on")
+                document.write("No Degree Prefrences <br>");
+            else
+                document.write("Masters<br>");
+            
+            
+            var text = form.get("text");
+            document.write("About :: ",text, "<br>");
+            
+            document.write("Subject ::")
+            var Subject = form.get("Java");
+            if(Subject != null)
+            document.write("java <br>");
+            var Subject = form.get("CPP");
+            if(Subject != null)
+            document.write("cpp <br>");
+            
+            var Subject = form.get("PHP");
+            if(Subject != null)
+            document.write("PHP <br>");
+             var Subject = form.get("Python");
+            if(Subject != null)
+            document.write("Python <br>");
+            
+        }
+</script>
+</head>
+<body>
+
+<form name="myForm" action="/action_page.php" onsubmit="return validateForm()"   id="form" method="post">
+ <h1>  form </h1>   
+    
+	First Name <input type = "text" name = "fname" >
+         <br> <br> <br>
+         Last name: <input type = "text" name = "lname" >
+	<br> <br> <br>
+         Phone number: <input type="tel" id="phone" name="phone" >
+          <br> <br> <br>
+    Course Selection
+  	<input type = "radio" name = "b" > Bachelors
+         <input type = "radio" name = "m" > Masters
+	<br><br><br>
+	Select your favourite courses
+	<input type = "checkbox" name = "Java" value = "1" id="sub[]"> Java
+         <input type = "checkbox" name = "CPP" value = "1" id="sub[]"> CPP
+	<input type = "checkbox" name = "PHP" value = "1" id="sub[]"> PHP
+         <input type = "checkbox" name = "Python" value = "1" id="sub[]">Python
+	<br><br><br>
+         <div>
+            Write About Yourself: <textarea name="text" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+
+            <input type="button" value="Submit" onClick="imp()">
+        </div>
+
+</body>
+</html>
